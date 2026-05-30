@@ -3,7 +3,7 @@ using UnityEngine;
 public class MovePipe : GameObjectBase, IGameAction
 {
     public float moveSpeed = 3f;
-    public float deadZone = -20f;
+    public float deadZone = -30f;
 
     void Update()
     {

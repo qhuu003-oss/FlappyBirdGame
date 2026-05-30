@@ -434,4 +434,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovePipe
   moveSpeed: 3
-  deadZone: -20
+  deadZone: -30
