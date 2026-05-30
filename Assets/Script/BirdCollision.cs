@@ -1,10 +1,27 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BirdCollision : MonoBehaviour
 {
-    void OnCollisionEnter2D(Collision2D collision)
+    public ScoreManager scoreManager;
+    public GameOverManager gameOverManager;
+
+    private bool isGameOver = false;
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (isGameOver) return;
+
+        isGameOver = true;
+        gameOverManager.ShowGameOver(scoreManager.Score);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (isGameOver) return;
+
+        if (other.CompareTag("Score"))
+        {
+            scoreManager.AddScore();
+        }
     }
 }

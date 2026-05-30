@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PipeSpawner : MonoBehaviour
 {
@@ -26,8 +26,21 @@ public class PipeSpawner : MonoBehaviour
 
     void SpawnPipe()
     {
-        float randomY = Random.Range(-heightOffset, heightOffset);
-        Vector3 spawnPos = new Vector3(transform.position.x, randomY, 0);
-        Instantiate(pipePrefab, spawnPos, Quaternion.identity);
+        try
+        {
+            if (pipePrefab == null)
+            {
+                throw new System.Exception("Pipe Prefab chưa được gắn vào PipeSpawner!");
+            }
+
+            float randomY = Random.Range(-heightOffset, heightOffset);
+            Vector3 spawnPos = new Vector3(transform.position.x, randomY, 0);
+
+            Instantiate(pipePrefab, spawnPos, Quaternion.identity);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Lỗi khi sinh ống: " + e.Message);
+        }
     }
 }
